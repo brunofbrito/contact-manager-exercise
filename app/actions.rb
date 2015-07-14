@@ -13,7 +13,8 @@ get "/" do
   elsif params[:order] == "descending"
     @users = User.order(first_name: :desc)
   elsif params[:query]
-    @users = User.where(first_name: params[:query]) + User.where(last_name: params[:query]) 
+    # @users = User.where(first_name: params[:query]) + User.where(last_name: params[:query]) 
+    @users = User.where("lower(first_name) = ? or lower(last_name) = ?", params[:query].downcase, params[:query].downcase)
   else
     @users = User.all.order(:first_name)
   end
@@ -22,7 +23,7 @@ end
 
 # alternativa:
 # get "/" do
-#   if params[:search]
+#   if params[:query]
 #     @users = User.where("lower(first_name) = ? or lower(last_name) = ?", params[:query].downcase, params[:query].downcase)
 #   else
 #     @users = User.all
