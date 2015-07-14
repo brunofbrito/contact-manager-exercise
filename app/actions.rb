@@ -20,6 +20,22 @@ get "/" do
   erb :index
 end
 
+# alternativa:
+# get "/" do
+#   if params[:search]
+#     @users = User.where("lower(first_name) = ? or lower(last_name) = ?", params[:query].downcase, params[:query].downcase)
+#   else
+#     @users = User.all
+#   end
+
+#   if params[:order] == "ascending"
+#     @users = @users.order(:first_name)
+#   else
+#     @users = @users.order("first_name DESC")
+#   end
+#   erb: index
+# end
+
 get '/users/create' do
   erb :create
 end
