@@ -2,10 +2,10 @@
 
 <form class="user-form" action="/users/create" method="post">
   <label for="first_name">
-    First Name: <input type="text" name="first_name" id="first_name" class="form-control" required>
+    First Name: <span class="text-danger">* required</span><input type="text" name="first_name" id="first_name" class="form-control" required>
   </label>
   <label for="last_name">
-    Last Name: <input type="text" name="last_name" id="last_name" class="form-control" required>
+    Last Name: <span class="text-danger">* required</span> <input type="text" name="last_name" id="last_name" class="form-control" required>
   </label><br>
   <label for="email">
     Email: <input type="email" name="email" id="email" class="form-control">
@@ -14,7 +14,7 @@
     Phone Number: <input type="number" name="phone_number" id="phone_number" class="form-control">
   </label><br>
   <label for="address">
-    Address: <input type="textarea" name="address" id="address" class="form-control">
+    Address: <textarea rows="3" class="form-control" name="address" id="address" class="form-control"></textarea>
   </label><br>
   
   <button class="btn btn-info" type="submit">
