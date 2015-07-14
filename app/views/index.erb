@@ -1,1 +1,26 @@
-<h1>Home Page</h1>
+<h1 class="text-uppercase"><span class="glyphicon glyphicon-phone"></span> Contact Manager</h1>
+
+<form class="user-form" action="/" method="get">
+<label for="search">
+    Search: <input type="text" name="query" id="search" class="form-control"><button class="btn btn-info">Search</button>
+</label>
+</form>
+<hr>
+<a href="/?order=ascending"><span class="glyphicon glyphicon-menu-up"></span>Sort Ascending</a> | 
+<a href="/?order=descending"><span class="glyphicon glyphicon-menu-down"></span>Sort Descending</a>
+<hr>
+<h2>All users</h2>
+  <ul class="list-unstyled">
+    <% @users.each do |user| %>
+      <li>
+        <p><span class="glyphicon glyphicon-user"></span> <strong><%= user.first_name %> <%= user.last_name %></strong></p>
+        <p><%= user.email %></p>
+        <p><%= user.phone_number %></p>
+        <p><%= user.address %></p>
+        <p><a href="/users/edit/<%= user.id %>"><span class="glyphicon glyphicon-pencil"></span> Edit</a> | <a href="/users/delete/<%= user.id %>"><span class="glyphicon glyphicon-remove"></span> Delete this user</a></p>
+      </li>
+    <% end %>
+  </ul>
+  <hr>
+  <a href="/users/create"><span class="glyphicon glyphicon-file"></span> Create a new user</a>
+  <hr>
