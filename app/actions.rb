@@ -8,34 +8,19 @@ class User < ActiveRecord::Base
 end
 
 get "/" do
-  if params[:order] == "ascending"
-    @users = User.order(:first_name)
-  elsif params[:order] == "descending"
-    @users = User.order(first_name: :desc)
-  elsif params[:query]
+  if params[:query]
     # @users = User.where(first_name: params[:query]) + User.where(last_name: params[:query]) 
     @users = User.where("lower(first_name) = ? or lower(last_name) = ?", params[:query].downcase, params[:query].downcase)
   else
     @users = User.all.order(:first_name)
   end
+  if params[:order] == "ascending"
+    @users = User.order(:first_name)
+  elsif params[:order] == "descending"
+    @users = User.order(first_name: :desc)
+  end
   erb :index
 end
-
-# alternativa:
-# get "/" do
-#   if params[:query]
-#     @users = User.where("lower(first_name) = ? or lower(last_name) = ?", params[:query].downcase, params[:query].downcase)
-#   else
-#     @users = User.all
-#   end
-
-#   if params[:order] == "ascending"
-#     @users = @users.order(:first_name)
-#   else
-#     @users = @users.order("first_name DESC")
-#   end
-#   erb: index
-# end
 
 get '/users/create' do
   erb :create
